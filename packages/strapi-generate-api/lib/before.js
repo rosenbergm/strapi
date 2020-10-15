@@ -36,15 +36,17 @@ module.exports = (scope, cb) => {
         : _.kebabCase(pluralize(scope.id)),
   });
 
+  let apiRoute = process.env.API_ROUTE ?? 'api/'
+
   let filePath;
   if (scope.args.api) {
-    filePath = `./api/${scope.args.api}`;
+    filePath = `./${apiRoute}${scope.args.api}`;
   } else if (scope.args.plugin) {
     filePath = `./plugins/${scope.args.plugin}`;
   } else if (scope.args.extend) {
     filePath = `./extensions/${scope.args.extend}`;
   } else {
-    filePath = `./api/${name}`;
+    filePath = `./${apiRoute}${name}`;
   }
 
   // Take another pass to take advantage of the defaults absorbed in previous passes.

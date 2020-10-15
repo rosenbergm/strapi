@@ -27,12 +27,13 @@ module.exports = function createBuilder() {
 
   const contentTypes = Object.keys(strapi.contentTypes).map(key => {
     const contentType = strapi.contentTypes[key];
+    let apiRoute = process.env.API_ROUTE ?? 'api/'
 
     let dir;
     if (contentType.plugin) {
       dir = `./extensions/${contentType.plugin}/models`;
     } else {
-      dir = `./api/${contentType.apiName}/models`;
+      dir = `./${apiRoute}${contentType.apiName}/models`;
     }
 
     return {

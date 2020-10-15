@@ -32,16 +32,18 @@ module.exports = (scope, cb) => {
     api: scope.id,
   });
 
+  let apiRoute = process.env.API_ROUTE ?? 'api/'
+
   // Determine the destination path.
   let filePath;
   if (scope.args.api) {
-    filePath = `./api/${scope.args.api}/controllers`;
+    filePath = `./${apiRoute}${scope.args.api}/controllers`;
   } else if (scope.args.plugin) {
     filePath = `./plugins/${scope.args.plugin}/controllers`;
   } else if (scope.args.extend) {
     filePath = `./extensions/${scope.args.extend}/controllers`;
   } else {
-    filePath = `./api/${name}/controllers`;
+    filePath = `./${apiRoute}${name}/controllers`;
   }
 
   // Take another pass to take advantage of the defaults absorbed in previous passes.

@@ -27,9 +27,11 @@ module.exports = (scope, cb) => {
   // Format `id`.
   const name = scope.name || nameToSlug(scope.id);
 
+  let apiRoute = process.env.API_ROUTE ?? 'api/'
+
   let filePath;
   if (scope.args.api) {
-    filePath = `./api/${scope.args.api}/config/policies`;
+    filePath = `./${apiRoute}${scope.args.api}/config/policies`;
   } else if (scope.args.plugin) {
     filePath = `./plugins/${scope.args.plugin}/config/policies`;
   } else {

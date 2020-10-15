@@ -3,7 +3,7 @@ const loadUtils = require('strapi/lib/load');
 const _ = require('lodash');
 
 const loadApisGraphqlConfig = appPath =>
-  loadUtils.loadFiles(appPath, 'api/**/config/*.graphql?(.js)');
+  loadUtils.loadFiles(appPath, `${process.env.API_PATH ?? 'api/'}**/config/*.graphql?(.js)`);
 
 const loadPluginsGraphqlConfig = async installedPlugins => {
   const root = {};
